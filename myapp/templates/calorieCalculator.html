@@ -1,0 +1,130 @@
+{% extends 'header.html' %}
+{% block content %}
+<section id="main">
+  <div class="calculator">
+    <h2 align="center">Calorie Calculator</h2>
+    <form id="calorieForm">
+        <label for="age">Age (years):</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+
+        <label for="weight">Weight (kg):</label>
+        <input type="number" id="weight" name="weight" required>
+
+        <label for="height">Height (cm):</label>
+        <input type="number" id="height" name="height" required>
+
+        <label for="activityLevel">Activity Level:</label>
+        <select id="activityLevel" name="activityLevel" required>
+            <option value="sedentary">Sedentary (little or no exercise)</option>
+            <option value="lightlyActive">Lightly Active (light exercise/sports 1-3 days/week)</option>
+            <option value="active">Active (moderate exercise/sports 3-5 days/week)</option>
+            <option value="veryActive">Very Active (hard exercise/sports 6-7 days a week)</option>
+        </select>
+
+        <label for="healthGoals">Health Goals:</label>
+        <select id="healthGoals" name="healthGoals" required>
+            <option value="weightLoss">Weight Loss</option>
+            <option value="maintenance">Maintenance</option>
+            <option value="weightGain">Weight Gain</option>
+        </select><br>
+
+        <input type="submit" value="Calculate Calories">
+    </form>
+    <div id="result">
+        <!-- Calorie calculation result will be displayed here -->
+        
+    </div>
+</div>
+<style>
+  /* CSS for the result div */
+#result {
+    margin-top: 20px; /* Add space between the form and result */
+    padding: 15px;
+   
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    text-align: center; /* Center the text horizontally */
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+</style>
+<script>
+    // JavaScript for handling form submission and calorie calculation
+    document.addEventListener("DOMContentLoaded", function() {
+        const form = document.getElementById("calorieForm");
+        const resultDiv = document.getElementById("result");
+
+        form.addEventListener("submit", function(event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Get form data
+            const formData = new FormData(form);
+
+            // Perform calorie calculation (you can replace this with your calculation logic)
+            const age = parseInt(formData.get("age"));
+            const gender = formData.get("gender");
+            const weight = parseFloat(formData.get("weight"));
+            const height = parseFloat(formData.get("height"));
+            const activityLevel = formData.get("activityLevel");
+            const healthGoals = formData.get("healthGoals");
+
+            // Perform your calorie calculation logic here
+            // For example, you can calculate calories based on the Harris-Benedict Equation
+
+            // Display the result
+            const calorieResult = calculateCalories(age, gender, weight, height, activityLevel, healthGoals);
+            resultDiv.innerHTML = `<p>Your estimated daily calorie intake is: ${calorieResult} calories</p>`;
+        });
+
+        // Function to calculate calories (replace with your logic)
+        function calculateCalories(age, gender, weight, height, activityLevel, healthGoals) {
+            // Replace this with your calorie calculation logic
+            // You can use formulas like the Harris-Benedict Equation or Mifflin-St Jeor Equation
+            // For simplicity, let's assume a basic calculation here:
+            let baseCalories = (gender === "male") ? 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age) : 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+            let totalCalories = baseCalories;
+
+            // Adjust for activity level
+            switch (activityLevel) {
+                case "sedentary":
+                    totalCalories *= 1.2;
+                    break;
+                case "lightlyActive":
+                    totalCalories *= 1.375;
+                    break;
+                case "active":
+                    totalCalories *= 1.55;
+                    break;
+                case "veryActive":
+                    totalCalories *= 1.725;
+                    break;
+                default:
+                    break;
+            }
+
+            // Adjust for health goals
+            switch (healthGoals) {
+                case "weightLoss":
+                    totalCalories -= 500; // Example: Reducing 500 calories per day for weight loss
+                    break;
+                case "weightGain":
+                    totalCalories += 500; // Example: Adding 500 calories per day for weight gain
+                    break;
+                default:
+                    break;
+            }
+
+            return Math.round(totalCalories);
+        }
+    });
+</script>
+</section>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+    Dopetrope by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Dieter- A Diet Generator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    <style>
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin: 0 auto;
+            margin-top: 50px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+
+<body class="homepage is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <section id="header">
+
+            <!-- Logo -->
+            <h1><a href="/">Dieter</a></h1>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="current"><a href="/">Home</a></li>
+                    <li>
+                        <a href="#">Apps</a>
+                        <ul>
+                            <li><a href="/bodyfat">Body Fat Calculator</a></li>
+                            <li><a href="/calorie">Calorie Calculator</a></li>
+                            <li><a href="/bmi">BMI Calculator</a></li>
+                            <li><a href="#">Coming soon</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/profile">DieGen</a></li>
+                    {% if user.is_authenticated %}
+                    <li>Hello, {{user.first_name}}</li>
+                    <li><a href="account/logout">Log Out</a></li>
+
+                    {% else %}
+                    <li><a href="account/register">Register</a></li>
+                    <li><a href="account/login">Log In</a></li>
+                    {% endif %}
+
+                </ul>
+            </nav>
+        </section>
+
+        <!-- Banner -->
+        <section id="banner">
+            <header>
+                <h2>A Healthy You is a Happy You</h2>
+                <p>Balancing Your Plate for a Better Tomorrow</p>
+            </header>
+        </section>
+
+
+
+        {% block content %}
+        {% endblock %}
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 col-12-medium">
+                        <section>
+                            <header>
+                                <h2>Blandit nisl adipiscing</h2>
+                            </header>
+                            <ul class="dates">
+                                <li>
+                                    <span class="date">Jan <strong>27</strong></span>
+                                    <h3><a href="#">Lorem dolor sit amet veroeros</a></h3>
+                                    <p>Ipsum dolor sit amet veroeros consequat blandit ipsum phasellus lorem
+                                        consequat etiam.</p>
+                                </li>
+                                <!-- Add more list items as needed -->
+                            </ul>
+                        </section>
+                    </div>
+                    <!-- Other content sections here -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+</body>
+
+</html>

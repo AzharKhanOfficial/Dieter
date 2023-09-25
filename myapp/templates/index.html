@@ -1,0 +1,214 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+    Dopetrope by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+
+<head>
+    <title>Dieter- A Diet Generator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+</head>
+
+<body class="homepage is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <section id="header">
+
+            <!-- Logo -->
+            <h1><a href="/">Dieter</a></h1>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li class="current"><a href="/">Home</a></li>
+                    <li>
+                        <a href="#">Apps</a>
+                        <ul>
+                            <li><a href="/bodyfat">Body Fat Calculator</a></li>
+                            <li><a href="/calorie">Calorie Calculator</a></li>
+                            <li><a href="/bmi">BMI Calculator</a></li>
+                            <li><a href="#">Veroeros feugiat</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="/profile">DieGen</a></li>
+                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                    {% if user.is_authenticated %}
+									<li>Hello, {{user.first_name}}</li>
+									<li ><a href="account/logout">Log Out</a></li>
+									
+									{% else %}
+									<li><a href="account/register">Register</a></li>
+									<li><a href="account/login">Log In</a></li>
+									{% endif %}
+                   
+                </ul>
+            </nav>
+
+            <!-- Banner -->
+            <section id="banner">
+                <header>
+                    <h2>A Healthy You is a Happy You</h2>
+                    <p>Balancing Your Plate for a Better Tomorrow</p>
+                </header>
+            </section>
+
+            <!-- Intro -->
+            <section id="intro" class="container">
+                <div class="row">
+                    <div class="col-4 col-12-medium">
+                        <section class="first">
+                            <i class="icon solid featured fa-heart"></i>
+                            <header>
+                                <h2>Building Healthy Habits</h2>
+                            </header>
+                            <p>We believe in making lasting, sustainable changes to your lifestyle.</p>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+                        <section class="middle">
+                            <i class="icon solid featured alt fa-check-circle"></i>
+                            <header>
+                                <h2>Expert Guidance</h2>
+                            </header>
+                            <p>We understand that everyone's needs are different, and we're dedicated to helping you
+                                make informed choices about your diet.</p>
+                        </section>
+                    </div>
+                    <div class="col-4 col-12-medium">
+                        <section class="last">
+                            <i class="icon solid featured alt2 fa-star"></i>
+                            <header>
+                                <h2>Achieving Optimal Health</h2>
+                            </header>
+                            <p>A balanced diet is the cornerstone of good health. It provides your body with the
+                                essential nutrients it needs to function at its best.</p>
+                        </section>
+                    </div>
+                </div>
+                <footer>
+                    <ul class="actions">
+                        <li><a href="#" class="button large">Get Started</a></li>
+                        <li><a href="#" class="button alt large">Learn More</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+        </section>
+
+        <!-- Main -->
+        <section id="main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <!-- Diets -->
+                        <section>
+                            <header class="major">
+                                <h2>Popular Diets</h2>
+                            </header>
+                            <div class="row">
+                                {% for diet in diets %}
+                                <div class="col-6 col-12-small">
+                                    <section class="box">
+                                        <a href="{{diet.url}}" class="image featured"><img src="{{diet.image.url}}"
+                                                alt="{{diet.name}}" /></a>
+                                        <header>
+                                            <h3>{{diet.name}}</h3>
+
+                                        </header>
+                                        <p>{{diet.desc}}</p>
+                                        <footer>
+                                            <ul class="actions">
+                                                <li><a href="{{diet.url}}"
+                                                        class="button icon solid fa-file-alt">Continue
+                                                        Reading</a></li>
+
+                                            </ul>
+                                        </footer>
+                                    </section>
+                                </div>
+                                {% endfor %}
+
+
+
+
+
+                                <section>
+                                    <header class="major">
+                                        <h2>Food Blogs</h2>
+                                    </header>
+                                    <div class="row">
+                                        {% for article in articles %}
+                                        <div class="col-4 col-6-medium col-12-small">
+                                            <section class="box">
+                                                <a href="{{ article.fields.shortUrl }}" class="image featured"><img
+                                                        src="{{ article.fields.thumbnail }}"
+                                                        alt="{{ article.fields.headline }}" /></a>
+                                                <header>
+                                                    <h3>{{ article.fields.headline }}</h3>
+                                                </header>
+                                                <p>{{ article.webTitle }}</p>
+                                                <footer>
+                                                    <ul class="actions">
+                                                        <li><a href="{{ article.fields.shortUrl }}"
+                                                                class="button alt">Read more</a></li>
+                                                    </ul>
+                                                </footer>
+                                            </section>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+                                </section>
+
+
+
+
+                            </div>
+                    </div>
+                </div>
+        </section>
+
+
+        <!-- Footer -->
+        <section id="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-8 col-12-medium">
+                        <section>
+                            <header>
+                                <h2>Blandit nisl adipiscing</h2>
+                            </header>
+                            <ul class="dates">
+                                <li>
+                                    <span class="date">Jan <strong>27</strong></span>
+                                    <h3><a href="#">Lorem dolor sit amet veroeros</a></h3>
+                                    <p>Ipsum dolor sit amet veroeros consequat blandit ipsum phasellus lorem consequat
+                                        etiam.</p>
+                                </li>
+                                <!-- Add more list items as needed -->
+                            </ul>
+                        </section>
+                    </div>
+                    <!-- Other content sections here -->
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.dropotron.min.js' %}"></script>
+    <script src="{% static 'assets/js/browser.min.js' %}"></script>
+    <script src="{% static 'assets/js/breakpoints.min.js' %}"></script>
+    <script src="{% static 'assets/js/util.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+</body>
+
+</html>

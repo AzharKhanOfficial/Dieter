@@ -1,0 +1,131 @@
+{% load static %}
+<!DOCTYPE HTML>
+<!--
+    Dopetrope by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <head>
+        <title>Dieter- A Diet Generator</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
+    </head>
+    <body class="homepage is-preload">
+        <div id="page-wrapper">
+
+            <!-- Header -->
+                <section id="header">
+
+                    <!-- Logo -->
+                        <h1><a href="/">Dieter</a></h1>
+
+                    <!-- Nav -->
+                        <nav id="nav">
+                            <ul>
+                                <li class="current"><a href="/">Home</a></li>
+                                <li>
+                                    <a href="#">Apps</a>
+                                    <ul>
+                                        <li><a href="#">Body Fat Calculator</a></li>
+                                        <li><a href="#">Calorie Calculator</a></li>
+                                        <li><a href="#">BMI Calculator</a></li>
+                                        <li><a href="#">Veroeros feugiat</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href="/profile">DieGen</a></li>
+                                <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                                <li><a href="no-sidebar.html">Log Out</a></li>
+                            </ul>
+                        </nav>
+                        </section>
+                                            <!-- Banner -->
+                                            <section id="banner">
+                                              <header>
+                                                  <h2>Howdy. This is Dopetrope.</h2>
+                                                  <p><b>A responsive template by HTML5 UP</p>
+                                              </header>
+                                          </section>
+                  
+                                      <!-- Intro -->
+                                          <section id="intro" class="container">
+                                              <div class="row">
+                                                  <div class="col-4 col-12-medium">
+                                                      <section class="first">
+                                                          <i class="icon solid featured fa-cog"></i>
+                                                          <header>
+                                                              <h2>Ipsum consequat</h2>
+                                                          </header>
+                                                          <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+                                                      </section>
+                                                  </div>
+                                                  <div class="col-4 col-12-medium">
+                                                      <section class="middle">
+                                                          <i class="icon solid featured alt fa-bolt"></i>
+                                                          <header>
+                                                              <h2>Magna etiam dolor</h2>
+                                                          </header>
+                                                          <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+                                                      </section>
+                                                  </div>
+                                                  <div class="col-4 col-12-medium">
+                                                      <section class="last">
+                                                          <i class="icon solid featured alt2 fa-star"></i>
+                                                          <header>
+                                                              <h2>Tempus adipiscing</h2>
+                                                          </header>
+                                                          <p>Nisl amet dolor sit ipsum veroeros sed blandit consequat veroeros et magna tempus.</p>
+                                                      </section>
+                                                  </div>
+                                              </div>
+                                              <footer>
+                                                  <ul class="actions">
+                                                      <li><a href="#" class="button large">Get Started</a></li>
+                                                      <li><a href="#" class="button alt large">Learn More</a></li>
+                                                  </ul>
+                                              </footer>
+                                          </section>
+                  
+                                  </section>
+                        <section id="main"></section>
+  <div id="calculator">
+    <h2>Body Fat Percentage Calculator</h2>
+    <label for="gender">Select your gender:</label>
+    <select id="gender">
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select><br><br>
+    <label for="waist">Enter your waist circumference (inches):</label>
+    <input type="number" id="waist"><br><br>
+    <label for="neck">Enter your neck circumference (inches):</label>
+    <input type="number" id="neck"><br><br>
+    <label for="height">Enter your height (inches):</label>
+    <input type="number" id="height"><br><br>
+    <button onclick="calculateBodyFat()">Calculate</button><br><br>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateBodyFat() {
+      const gender = document.getElementById("gender").value;
+      const waist = parseFloat(document.getElementById("waist").value);
+      const neck = parseFloat(document.getElementById("neck").value);
+      const height = parseFloat(document.getElementById("height").value);
+
+      let bodyFatPercentage;
+
+      if (gender === "male") {
+        // U.S. Navy method for males
+        bodyFatPercentage = 86.010 * Math.log10(waist - neck) - 70.041 * Math.log10(height) + 36.76;
+      } else {
+        // U.S. Navy method for females
+        bodyFatPercentage = 163.205 * Math.log10(waist + neck - height) - 97.684 * Math.log10(height) - 78.387;
+      }
+
+      document.getElementById("result").innerHTML = `Your estimated body fat percentage: ${bodyFatPercentage.toFixed(2)}%`;
+    }
+  </script>
+  </section>
+</body>
+</html>

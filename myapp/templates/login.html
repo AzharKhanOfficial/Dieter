@@ -1,0 +1,31 @@
+{% extends 'header.html' %}
+{% block content %}
+
+<section id="main">
+<form method="post" name="login" id="form">
+        
+  <div align="center">
+   {% csrf_token %}
+   Enter the Username<br>
+   <input type="text" name="username" placeholder="Username"><br>
+   <br>
+
+   Enter the Password<br>
+   <input type="password" name="password" placeholder="Password"><br>
+   <br>
+
+   <input  type="Submit" >
+  </div>
+
+</form>
+
+{% for message in messages %}
+<h3>
+   {{message}}
+</h3>
+{% endfor %}
+
+    
+</section>
+    
+    {% endblock %}
