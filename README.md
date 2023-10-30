@@ -2,6 +2,15 @@
 
 The Diet Generator Project is a web application that provides a suite of tools to help users with their diet and nutrition needs. It incorporates features such as calculating BMI (Body Mass Index), determining daily caloric requirements, generating personalized diet plans, and collecting diet-related information from news articles.
 
+## Table of Contents
+
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Setup](#setup)
+- [Usage](#usage)
+- [Contributing](#contributing)
+- [License](#license)
+
 ## Features
 
 1. **BMI Calculator:** Calculate your BMI based on your height and weight to assess your health.
@@ -21,13 +30,28 @@ The Diet Generator Project is a web application that provides a suite of tools t
 
 ## Setup
 
-Clone this repository to your local machine:
+1. Clone this repository to your local machine:
 
    ```bash
-   git clone https://github.com/yourusername/dieter.git
-   
-##Usage
-- Visit the web application to use the BMI Calculator, Caloric Needs Calculator, and Diet Plan Generator features.
-- The application will also fetch and display diet-related news articles from The Guardian.
-- To access the diet-related information database, use the provided API endpoints.
+   git clone https://github.com/AzharKhanOfficial/dieter.git
+     cd Dieter
 
+2. Install project dependencies:
+
+   pip install -r requirements.txt
+    
+4. Set up your PostgreSQL database and configure the database connection in your Django settings.
+5. Obtain API keys for The Guardian News API and OpenAI.
+6. Apply Django migrations:
+
+   python manage.py migrate
+   
+7.Start the Django development server:
+
+   python manage.py runserver
+
+8.Access the application in your web browser by navigating to http://localhost:8000.
+
+
+
+   
