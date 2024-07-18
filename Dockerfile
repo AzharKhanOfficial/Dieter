@@ -1,20 +1,19 @@
-# Use the official Python image from the Docker Hub
-FROM python:3.9-slim
+# Use an appropriate Python base image
+FROM python:3.8
 
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the requirements file into the container
+# Install pip dependencies
 COPY requirements.txt .
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
-# Install the dependencies
-RUN pip install --no-cache-dir -r requirements.txt
-
-# Copy the rest of the application code into the container
+# Copy the rest of your application code
 COPY . .
 
-# Expose port 8000 for the Django application
+# Expose any necessary ports
 EXPOSE 8000
 
-# Command to run the application
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "Dieter.wsgi:application"]
+# Define the command to run your application
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
